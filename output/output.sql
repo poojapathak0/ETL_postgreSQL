@@ -13,3 +13,4 @@ CREATE TABLE `output` (
 INSERT INTO `output` (`personid`, `firstname`, `lastname`, `address`, `city`, `contact_no`, `salary`) VALUES
 (20, 'pooja', 'pathak', 'ku', 'dhulikhel', NULL, NULL),
 (21, 'prayxya', 'pathak', 'LA', 'USA', NULL, 1500000);
+ 
