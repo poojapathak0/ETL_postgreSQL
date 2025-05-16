@@ -1,0 +1,64 @@
+2025-05-16 13:40:16,972 - root - INFO - Logger initialized
+2025-05-16 13:40:16,972 - root - INFO - Starting PostgreSQL Data Format Converter
+2025-05-16 13:40:16,972 - root - INFO - Output format: json
+2025-05-16 13:40:16,973 - root - INFO - Successfully connected to PostgreSQL database
+2025-05-16 13:40:16,973 - root - INFO - Executing custom query: SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public' LIMIT 5;
+2025-05-16 13:40:17,029 - root - ERROR - Database connection error: connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+2025-05-16 13:40:17,030 - root - ERROR - Query execution error: 'NoneType' object has no attribute 'execute'
+2025-05-16 13:40:17,030 - root - ERROR - Data extraction failed: 'NoneType' object has no attribute 'execute'
+2025-05-16 14:13:59,917 - root - INFO - Logger initialized
+2025-05-16 14:13:59,918 - root - INFO - Starting PostgreSQL Data Format Converter
+2025-05-16 14:13:59,918 - root - INFO - Output format: json
+2025-05-16 14:13:59,918 - root - INFO - Successfully connected to PostgreSQL database
+2025-05-16 14:13:59,918 - root - INFO - Executing custom query: SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public' LIMIT 5;
+2025-05-16 14:13:59,954 - root - ERROR - Database connection error: connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+2025-05-16 14:13:59,955 - root - ERROR - Query execution error: 'NoneType' object has no attribute 'execute'
+2025-05-16 14:13:59,955 - root - ERROR - Data extraction failed: 'NoneType' object has no attribute 'execute'
+2025-05-16 14:17:18,303 - root - INFO - Logger initialized
+2025-05-16 14:17:18,303 - root - INFO - Starting PostgreSQL Data Format Converter
+2025-05-16 14:17:18,303 - root - INFO - Output format: json
+2025-05-16 14:17:18,303 - root - INFO - Successfully connected to PostgreSQL database
+2025-05-16 14:17:18,304 - root - INFO - Executing custom query: SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public' LIMIT 5;
+2025-05-16 14:17:18,345 - root - INFO - Successfully extracted 0 records
+2025-05-16 14:17:18,345 - root - INFO - Converting data to json format
+2025-05-16 14:17:18,345 - root - WARNING - Empty dataset provided for conversion
+2025-05-16 14:17:18,345 - root - INFO - Data successfully converted and saved to ./output\output.json
+2025-05-16 14:17:18,345 - root - INFO - Conversion process completed successfully
+2025-05-16 14:27:37,505 - root - INFO - Logger initialized
+2025-05-16 14:27:37,505 - root - INFO - Starting PostgreSQL Data Format Converter
+2025-05-16 14:27:37,505 - root - INFO - Output format: json
+2025-05-16 14:27:37,506 - root - INFO - Successfully connected to PostgreSQL database
+2025-05-16 14:27:37,506 - root - INFO - Executing custom query: SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public' LIMIT 10;
+2025-05-16 14:27:37,593 - root - INFO - Successfully extracted 3 records
+2025-05-16 14:27:37,594 - root - INFO - Converting data to json format
+2025-05-16 14:27:37,594 - root - INFO - Preprocessing data for JSON conversion
+2025-05-16 14:27:37,595 - root - INFO - Writing 3 records to ./output\output.json
+2025-05-16 14:27:37,597 - root - INFO - Successfully wrote data to ./output\output.json
+2025-05-16 14:27:37,597 - root - INFO - Data successfully converted and saved to ./output\output.json
+2025-05-16 14:27:37,598 - root - INFO - Conversion process completed successfully
+2025-05-16 14:27:58,120 - root - INFO - Logger initialized
+2025-05-16 14:27:58,120 - root - INFO - Starting PostgreSQL Data Format Converter
+2025-05-16 14:27:58,120 - root - INFO - Output format: json
+2025-05-16 14:27:58,121 - root - INFO - Successfully connected to PostgreSQL database
+2025-05-16 14:27:58,121 - root - INFO - Executing custom query: SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public' LIMIT 10;
+2025-05-16 14:27:58,197 - root - INFO - Successfully extracted 3 records
+2025-05-16 14:27:58,198 - root - INFO - Converting data to json format
+2025-05-16 14:27:58,198 - root - INFO - Preprocessing data for JSON conversion
+2025-05-16 14:27:58,199 - root - INFO - Writing 3 records to ./output\output.json
+2025-05-16 14:27:58,199 - root - INFO - Successfully wrote data to ./output\output.json
+2025-05-16 14:27:58,200 - root - INFO - Data successfully converted and saved to ./output\output.json
+2025-05-16 14:27:58,200 - root - INFO - Conversion process completed successfully
+2025-05-16 14:32:22,701 - root - INFO - Logger initialized
+2025-05-16 14:32:22,702 - root - INFO - Starting PostgreSQL Data Format Converter
+2025-05-16 14:32:22,702 - root - INFO - Output format: json
+2025-05-16 14:32:22,702 - root - INFO - Successfully connected to PostgreSQL database
+2025-05-16 14:32:22,702 - root - INFO - Executing custom query: SELECT * FROM public.person;
+2025-05-16 14:32:22,778 - root - INFO - Successfully extracted 2 records
+2025-05-16 14:32:22,779 - root - INFO - Converting data to json format
+2025-05-16 14:32:22,780 - root - INFO - Preprocessing data for JSON conversion
+2025-05-16 14:32:22,781 - root - INFO - Writing 2 records to ./output\output.json
+2025-05-16 14:32:22,781 - root - INFO - Successfully wrote data to ./output\output.json
+2025-05-16 14:32:22,781 - root - INFO - Data successfully converted and saved to ./output\output.json
+2025-05-16 14:32:22,783 - root - INFO - Conversion process completed successfully
