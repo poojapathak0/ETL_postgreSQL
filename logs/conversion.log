@@ -62,3 +62,65 @@
 2025-05-16 14:32:22,781 - root - INFO - Successfully wrote data to ./output\output.json
 2025-05-16 14:32:22,781 - root - INFO - Data successfully converted and saved to ./output\output.json
 2025-05-16 14:32:22,783 - root - INFO - Conversion process completed successfully
+2025-05-16 14:41:12,325 - root - INFO - Logger initialized
+2025-05-16 14:41:12,325 - root - INFO - Starting PostgreSQL Data Format Converter
+2025-05-16 14:41:12,326 - root - INFO - Successfully connected to PostgreSQL database: sql1
+2025-05-16 14:44:50,939 - root - INFO - Logger initialized
+2025-05-16 14:44:50,939 - root - INFO - Starting PostgreSQL Data Format Converter
+2025-05-16 14:44:50,939 - root - INFO - Successfully connected to PostgreSQL database: sql1
+2025-05-16 14:46:10,578 - root - INFO - Logger initialized
+2025-05-16 14:46:10,578 - root - INFO - Starting PostgreSQL Data Format Converter
+2025-05-16 14:46:10,578 - root - INFO - Successfully connected to PostgreSQL database: sql1
+2025-05-16 14:46:27,432 - root - INFO - Output format: csv
+2025-05-16 14:46:27,434 - root - INFO - Executing custom query: SELECT * FROM public.students;
+2025-05-16 14:46:27,442 - root - INFO - Successfully extracted 0 records
+2025-05-16 14:46:27,442 - root - INFO - Converting data to csv format
+2025-05-16 14:46:27,443 - root - WARNING - Empty dataset provided for conversion
+2025-05-16 14:46:27,443 - root - INFO - Data successfully converted and saved to ./output\output.csv
+2025-05-16 14:46:27,443 - root - INFO - Conversion process completed successfully
+2025-05-16 14:46:46,925 - root - INFO - Logger initialized
+2025-05-16 14:46:46,925 - root - INFO - Starting PostgreSQL Data Format Converter
+2025-05-16 14:46:46,925 - root - INFO - Successfully connected to PostgreSQL database: sql1
+2025-05-16 14:46:55,357 - root - INFO - Output format: mongodb
+2025-05-16 14:46:55,358 - root - INFO - Executing custom query: SELECT * FROM public.person;
+2025-05-16 14:46:55,361 - root - INFO - Successfully extracted 2 records
+2025-05-16 14:46:55,361 - root - INFO - Converting data to mongodb format
+2025-05-16 14:46:55,362 - root - INFO - Preprocessing data for MongoDB conversion
+2025-05-16 14:46:55,362 - root - INFO - Writing 2 records to ./output\output.mongodb
+2025-05-16 14:46:55,364 - root - INFO - Successfully wrote data to ./output\output.mongodb
+2025-05-16 14:46:55,364 - root - INFO - Data successfully converted and saved to ./output\output.mongodb
+2025-05-16 14:46:55,364 - root - INFO - Conversion process completed successfully
+2025-05-16 14:49:21,321 - root - INFO - Logger initialized
+2025-05-16 14:49:21,321 - root - INFO - Starting PostgreSQL Data Format Converter
+2025-05-16 14:49:21,321 - root - INFO - Successfully connected to PostgreSQL database: sql1
+2025-05-16 14:49:40,893 - root - INFO - Output format: csv
+2025-05-16 14:49:40,894 - root - INFO - Executing custom query: SELECT * FROM public.staff;
+2025-05-16 14:49:40,895 - root - INFO - Successfully extracted 0 records
+2025-05-16 14:49:40,896 - root - INFO - Converting data to csv format
+2025-05-16 14:49:40,896 - root - WARNING - Empty dataset provided for conversion
+2025-05-16 14:49:40,897 - root - INFO - Data successfully converted and saved to ./output\output.csv
+2025-05-16 14:49:40,897 - root - INFO - Conversion process completed successfully
+2025-05-16 14:50:42,221 - root - INFO - Logger initialized
+2025-05-16 14:50:42,222 - root - INFO - Starting PostgreSQL Data Format Converter
+2025-05-16 14:50:42,222 - root - INFO - Successfully connected to PostgreSQL database: sql1
+2025-05-16 14:50:51,246 - root - INFO - Output format: csv
+2025-05-16 14:50:51,247 - root - INFO - Executing custom query: SELECT * FROM public.person;
+2025-05-16 14:50:51,250 - root - INFO - Successfully extracted 2 records
+2025-05-16 14:50:51,251 - root - INFO - Converting data to csv format
+2025-05-16 14:50:51,251 - root - INFO - Preprocessing data for CSV conversion
+2025-05-16 14:50:51,259 - root - INFO - Writing 2 records to ./output\output.csv
+2025-05-16 14:50:51,271 - root - INFO - Successfully wrote data to ./output\output.csv
+2025-05-16 14:50:51,272 - root - INFO - Data successfully converted and saved to ./output\output.csv
+2025-05-16 14:50:51,272 - root - INFO - Conversion process completed successfully
+2025-05-16 14:53:04,253 - root - INFO - Logger initialized
+2025-05-16 14:53:04,254 - root - INFO - Starting PostgreSQL Data Format Converter
+2025-05-16 14:53:04,254 - root - INFO - Successfully connected to PostgreSQL database: sql1
+2025-05-16 14:53:19,685 - root - INFO - Output format: sql
+2025-05-16 14:53:19,686 - root - INFO - Executing custom query: SELECT * FROM public.person;
+2025-05-16 14:53:19,688 - root - INFO - Successfully extracted 2 records
+2025-05-16 14:53:19,689 - root - INFO - Converting data to sql format
+2025-05-16 14:53:19,690 - root - INFO - Preprocessing data for SQL conversion
+2025-05-16 14:53:19,690 - root - INFO - Generating SQL statements for table 'output'
+2025-05-16 14:53:19,692 - root - INFO - Successfully wrote SQL statements to ./output\output.sql
+2025-05-16 14:53:19,692 - root - INFO - Data successfully converted and saved to ./output\output.sql
+2025-05-16 14:53:19,692 - root - INFO - Conversion process completed successfully

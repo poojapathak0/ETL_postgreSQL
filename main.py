@@ -97,6 +97,106 @@ def parse_arguments():
     return parser.parse_args()
 
 
+def list_tables(pg_connector, schema_name='public'):
+    """
+    List tables in a given schema.
+    
+    Args:
+        pg_connector (PostgreSQLConnector): Instance of PostgreSQLConnector.
+        schema_name (str): Name of the schema to list tables from.
+        
+    Returns:
+        list: A list of table names.
+    """
+    query = f"SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = '{schema_name}';"
+    try:
+        tables_data = pg_connector.execute_query(query)
+        return [row['tablename'] for row in tables_data]
+    except Exception as e:
+        logging.error(f"Failed to list tables: {e}")
+        return []
+
+def interactive_mode(config, pg_connector):
+    """
+    Run the converter in interactive mode.
+    
+    Args:
+        config (dict): Configuration settings.
+        pg_connector (PostgreSQLConnector): Instance of PostgreSQLConnector.
+        
+    Returns:
+        tuple: (table_name, format_type) or (None, None) if user aborts.
+    """
+    print("\nWelcome to the PostgreSQL Data Format Converter - Interactive Mode!")
+    
+    # Confirm database
+    default_db = config.get('postgresql', {}).get('database', 'your_default_db')
+    db_name = input(f"Enter PostgreSQL database name (default: {default_db}): ") or default_db
+    
+    # Update config if a different DB is entered (in-memory for this session)
+    # This assumes pg_connector can be re-initialized or its connection can be changed.
+    # For simplicity, we'll assume the initial pg_connector used the default_db or was already configured.
+    # If the user enters a different DB, we might need to re-initialize pg_connector
+    # or modify its connection parameters if the class supports it.
+    # For this example, we'll log if it's different but proceed with the initial pg_connector.
+    if db_name != pg_connector.config.get('database'):
+        logging.info(f"Connecting to database: {db_name} (Note: Initial connection was to {pg_connector.config.get('database')})")
+        # Ideally, re-initialize or update pg_connector here if db_name is different
+        # For now, we'll assume the user wants to use the initially configured connection if they
+        # entered a different DB name but the connector doesn't support dynamic change.
+        # Or, we could modify PostgreSQLConnector to accept dbname on execute_query/get_table_data.
+
+    print(f"\nFetching tables from database '{db_name}', schema 'public'...")
+    tables = list_tables(pg_connector)
+    
+    if not tables:
+        print("No tables found in the 'public' schema or failed to connect.")
+        return None, None
+        
+    print("\nAvailable tables:")
+    for i, table in enumerate(tables):
+        print(f"{i + 1}. {table}")
+        
+    while True:
+        try:
+            choice = input("Select a table by number (or 'q' to quit): ")
+            if choice.lower() == 'q':
+                return None, None
+            table_index = int(choice) - 1
+            if 0 <= table_index < len(tables):
+                selected_table = tables[table_index]
+                break
+            else:
+                print("Invalid selection. Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            
+    print(f"\nYou selected table: {selected_table}")
+    
+    # Get format
+    supported_formats = ['json', 'csv', 'mongodb', 'sql']
+    print("\nSupported output formats:")
+    for i, fmt in enumerate(supported_formats):
+        print(f"{i + 1}. {fmt}")
+        
+    while True:
+        try:
+            choice = input("Select an output format by number (or 'q' to quit): ")
+            if choice.lower() == 'q':
+                return None, None
+            format_index = int(choice) - 1
+            if 0 <= format_index < len(supported_formats):
+                selected_format = supported_formats[format_index]
+                break
+            else:
+                print("Invalid selection. Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            
+    print(f"You selected format: {selected_format}")
+    
+    return selected_table, selected_format
+
 def get_converter(format_type, config):
     """
     Get the appropriate converter based on the format type.
@@ -136,38 +236,62 @@ def main():
     config = load_config(args.config)
     
     # Setup logging
-    log_level = logging.DEBUG if args.verbose else logging.INFO
-    setup_logger(config['logging']['file'], log_level)
+    log_level = logging.DEBUG if args.verbose else config.get('logging', {}).get('level', 'INFO').upper()
+    log_file = config.get('logging', {}).get('file', './logs/conversion.log')
+    setup_logger(log_file, log_level)
     
     logging.info("Starting PostgreSQL Data Format Converter")
-    
-    # Get the format type (command line argument or from config)
-    format_type = args.format or config['output']['default_format']
-    logging.info(f"Output format: {format_type}")
     
     # Initialize PostgreSQL connector
     try:
         pg_connector = PostgreSQLConnector(config['postgresql'])
-        logging.info("Successfully connected to PostgreSQL database")
+        logging.info(f"Successfully connected to PostgreSQL database: {config['postgresql'].get('database')}")
     except Exception as e:
         logging.error(f"Failed to connect to PostgreSQL: {e}")
         sys.exit(1)
+
+    table_to_convert = args.table
+    format_type = args.format or config['output']['default_format']
+    query_to_execute = args.query
+
+    if not query_to_execute and not table_to_convert:
+        # Enter interactive mode
+        selected_table, selected_format = interactive_mode(config, pg_connector)
+        if selected_table and selected_format:
+            table_to_convert = selected_table
+            format_type = selected_format
+            query_to_execute = f"SELECT * FROM public.{table_to_convert};" # Default query for selected table
+        else:
+            logging.info("Interactive mode exited by user or no selection made.")
+            print("Exiting application.")
+            sys.exit(0)
+    
+    logging.info(f"Output format: {format_type}")
     
     # Initialize the appropriate converter
     converter = get_converter(format_type, config)
     
     # Extract data from PostgreSQL
     try:
-        if args.query:
-            logging.info(f"Executing custom query: {args.query}")
-            data = pg_connector.execute_query(args.query)
-        elif args.table:
-            logging.info(f"Extracting data from table: {args.table}")
-            data = pg_connector.get_table_data(args.table)
+        if query_to_execute:
+            logging.info(f"Executing custom query: {query_to_execute}")
+            data = pg_connector.execute_query(query_to_execute)
+        # The case for args.table without args.query is now handled by constructing query_to_execute
+        # elif table_to_convert: 
+        #     logging.info(f"Extracting data from table: {table_to_convert}")
+        #     # Construct a default query if only table name is provided
+        #     default_query = f"SELECT * FROM public.{table_to_convert};" 
+        #     data = pg_connector.execute_query(default_query)
         else:
-            logging.error("No query or table specified")
+            # This condition should ideally not be met if interactive mode forces a selection
+            # or CLI args are validated properly.
+            logging.error("No query or table specified, and interactive mode did not yield a selection.")
             sys.exit(1)
             
+        if data is None: # Check if execute_query returned None (e.g. on error)
+            logging.error("Failed to extract data. Query might have failed or returned no result.")
+            sys.exit(1)
+
         logging.info(f"Successfully extracted {len(data)} records")
     except Exception as e:
         logging.error(f"Data extraction failed: {e}")

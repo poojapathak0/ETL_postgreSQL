@@ -1,0 +1,20 @@
+[
+  {
+    "personid": 20,
+    "firstname": "pooja",
+    "lastname": "pathak",
+    "address": "ku",
+    "city": "dhulikhel",
+    "contact_no": null,
+    "salary": null
+  },
+  {
+    "personid": 21,
+    "firstname": "prayxya",
+    "lastname": "pathak",
+    "address": "LA",
+    "city": "USA",
+    "contact_no": null,
+    "salary": 1500000
+  }
+]
