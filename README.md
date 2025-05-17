@@ -70,30 +70,6 @@ The configuration file (`config/default_config.yaml`) contains settings for:
 - Output settings
 - Logging configuration
 
-Example:
-
-```yaml
-postgresql:
-  host: localhost
-  port: 5432
-  database: mydb
-  user: postgres
-  password: your_password
-  
-mongodb:
-  uri: mongodb://localhost:27017/
-  database: converted_data
-
-output:
-  default_format: json
-  output_dir: ./output
-  
-logging:
-  level: INFO
-  file: ./logs/conversion.log
-```
-
-### Examples
 
 1. Convert a table to JSON:
    ```bash
