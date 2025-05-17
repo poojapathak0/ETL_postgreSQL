@@ -237,14 +237,6 @@ To add a new converter for a different format:
 
 You can customize how data is processed by overriding the `preprocess_data` method in your converter.
 
-## License
 
-[Your License Here]
-
-## Contributors
-
-[Your Name/Organization]
-
----
 
 Feel free to contribute to this project by opening issues or submitting pull requests!
