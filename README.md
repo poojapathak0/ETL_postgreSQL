@@ -49,7 +49,7 @@ The PostgreSQL Data Format Converter is a powerful Python tool designed to conve
 The converter can be run from the command line:
 
 ```bash
-python main.py --format json --table customers --output ./output/customers.json
+python main.py 
 ```
 
 ### Command Line Options
@@ -70,30 +70,9 @@ The configuration file (`config/default_config.yaml`) contains settings for:
 - Output settings
 - Logging configuration
 
-Example:
+can also run:
 
-```yaml
-postgresql:
-  host: localhost
-  port: 5432
-  database: mydb
-  user: postgres
-  password: your_password
-  
-mongodb:
-  uri: mongodb://localhost:27017/
-  database: converted_data
 
-output:
-  default_format: json
-  output_dir: ./output
-  
-logging:
-  level: INFO
-  file: ./logs/conversion.log
-```
-
-### Examples
 
 1. Convert a table to JSON:
    ```bash
@@ -237,11 +216,7 @@ To add a new converter for a different format:
 
 You can customize how data is processed by overriding the `preprocess_data` method in your converter.
 
-## License
 
-[Your License Here]
-
-## Contributors
 
 [Your Name/Organization]
 
